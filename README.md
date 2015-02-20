@@ -13,3 +13,7 @@ var { div } = require('omniscient-dom')(component);
 
 React.render(div({ className: 'myDiv' }), document.body);
 ```
+
+## License
+
+MIT
