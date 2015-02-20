@@ -11,8 +11,8 @@ function createComponents(omniscient){
 
   elements.forEach(function(element){
     components[element] = omniscient(element, function(props, statics){
-      var allProps = assign({}, omit(props, 'statics'), statics);
-      return React.createElement(element, allProps);
+      var _props = assign({}, omit(props, 'statics'), statics);
+      return React.createElement(element, _props);
     });
   });
 

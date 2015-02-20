@@ -34,4 +34,12 @@ lab.experiment('components', function(){
     code.expect(statics).to.equal(statics);
     done();
   });
+
+  lab.test('returns react component when jsx: true on omniscient', function(done){
+    var components = require('../')(omniscient.withDefaults({ jsx: true }));
+    var el = React.createElement(components.div, props);
+    var result = React.renderToString(el);
+    code.expect(result).to.contain('class="test"');
+    done();
+  });
 });
