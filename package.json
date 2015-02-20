@@ -1,6 +1,6 @@
 {
   "name": "omniscient-dom",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "DOM abstraction for React using omniscient",
   "main": "index.js",
   "scripts": {
