@@ -12,7 +12,9 @@ function createComponents(omniscient){
 
   elements.forEach(function(element){
     components[element] = omniscient(element, function(props, statics){
-      // Best approach to "magically" turn this to a child?
+      // if the derefed cursor is a plain value,
+      // we treat it as a child because React doesn't understand
+      // non-key/values as props
       if (scu.isCursor(props) && !scu.isImmutable(props.deref())) {
         props = {
           children: props.deref()
@@ -29,8 +31,10 @@ function createComponents(omniscient){
       if (scu.isImmutable(statics)) {
         statics = statics.toJS();
       }
+
+      // flattens the statics to props
       var _props = assign({}, omit(props, 'statics'), statics);
-      return React.createElement(element, _props)
+      return React.createElement(element, _props);
     });
   });
 

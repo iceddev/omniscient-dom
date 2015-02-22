@@ -58,7 +58,6 @@ lab.experiment('components', function(){
     done();
   });
 
-
   lab.test('works with immutable structure as statics', function(done){
     var data = Immutable.fromJS({ className: 'my-class' });
 
@@ -68,6 +67,28 @@ lab.experiment('components', function(){
     done();
   });
 
+  lab.test('works with children', function(done){
+    var el = components.div({}, 'Hello from string');
+    var result = React.renderToString(el);
+    code.expect(result).to.contain('Hello from string');
+    done();
+  });
+
+  lab.test('works with nested children', function(done){
+    var el = components.div({}, components.div({}, 'Hello from string'));
+    var result = React.renderToString(el);
+    code.expect(result).to.contain('Hello from string');
+    done();
+  });
+
+  lab.test('works with props, statics & children', function(done){
+    var el = components.button(props, statics, 'Hello from string');
+    var result = React.renderToString(el);
+    code.expect(result).to.contain('class="test"');
+    code.expect(result).to.contain('type="submit"');
+    code.expect(result).to.contain('Hello from string');
+    done();
+  });
 
   lab.test('does not mutate props or statics', function(done){
     var el = components.button(props, statics);
